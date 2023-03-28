@@ -1,0 +1,68 @@
+# The name of the workflow
+name: Test Project
+#
+# What triggers the workflow.
+# See these events: 
+# https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows 
+#
+on: workflow_dispatch
+#
+# A list of jobs
+#
+jobs: 
+#
+# This is the first named job.
+  #
+  first-job:
+  #
+  # What environment to use. See this link for more details and a list of 
+  # supported runners:
+  # https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#overview-of-github-hosted-runners 
+    #
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print greeting 
+        run: echo "hello world"
+        #
+        # use with: when configuration is needed
+        #
+      - name: Print goodbye
+        run: echo "goodbye!"
+        #
+        # It's possible to run multi-line entries in a single step as such 
+        # (note indenting):
+        # run: |
+        #  echo "first step"
+        #  echo "second step"
+  #
+  # This job will demonstrate checking out code, + dependencies + caching
+  #
+  second-job:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Get code 
+        uses: actions/checkout@<version>
+      - name: Cache dependencies
+        #
+        # The official Github action for caching.
+        #
+        uses: actions/cache@<version>
+        #
+        # Define where the files are cached, and give the cache a key.
+        #
+          with: 
+            path: <where the files are cached. Such as `~/.npm`>
+            #
+            # ${{ hashFiles('**/package-lock.json') }} is a function that 
+            # produces a unique value based on the file path passed to it. 
+            #
+            key: some-name-${{ hashFiles('**/package-lock.json') }} 
+            #
+            # Repeat lines 45 - 62 in each subsequent job in your workflow.
+            # The first time it's run, the cahce is made. Subsequent times
+            # use the cache created the first time it's run (or when the
+            # dependencies are updated.)
+            #
+      - name: Install dependencies
+        run: npm ci 
+      - 

@@ -1,0 +1,37 @@
+# Github Actions Core Components
+A git repository stores code (or anything), and actions automate certain workflows relevant to that data. For example, linting and testing code or text. 
+
+Github Actions consist of three core components:
+1. Workflows, which are attached to a repository
+2. Jobs, which define a Runner and run the steps.
+3. Steps, which perform the desired actions.
+
+> Note
+>
+> Github actions are free for public repositories, but only a certain amount are allowed for private. Extra usage costs. 
+## Workflows
+Build workflows to setup a job that should be executed when an event triggers them. 
+
+To create a workflow:
+1. From an existing or newly created Github repository, click the **Actions** tab.
+2. Locate the template for **Simple Workflow**, and click **Configure**. 
+    1. There are a number of alternative deployment options. 
+3. In the browser editor, name the file.
+    4. It's good practice to note where an action is stored.
+4. Create your workflow. 
+
+An [example of a basic workflow is included here](../test.txt).
+## Jobs
+Jobs define a Runner (execution environment), and the steps that are executed within that environment. A workflow can contain multiple jobs.  
+
+Jobs run in parallel by default, but can be run in any order or conditionally. 
+## Steps
+Steps are shell scripts or actions that should be executed. Build your own, execute in the command line, or use third-party actions. A job can contain multiple steps. 
+
+Steps are _usually_ executed in order, but can also be conditional. 
+
+Refer to [the test yaml file](../test.txt) for the basic structure of a github action. 
+
+Steps:
+* Run in parallel unless using `needs:` to specify a step that must successfully complete prior to a step initializing. 
+* Can have multiple triggers.

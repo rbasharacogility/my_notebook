@@ -1,0 +1,20 @@
+# Workflow and Events
+Event definitions offer complex conditions for building github actions. 
+## Available Events
+Most available events are workflow (`push`, `pull_request`, `create`, `fork`, etc.) related, but [many others exist](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows).
+
+> Remember, multiple triggers are possible. 
+## Activity Types
+Activity types determine when an action is performed, and uses the `on:` designation. For example, executing a workflow when a pull request is opened (as opposed to closed or any other state). 
+
+Syntax looks like:
+
+``
+on:
+  pull_request:
+    types:
+      - opened
+``
+## Event Filters
+Filters give greater control of event configurations, such as activity types (which version, or which type of event occurs) or filters (filter based on an occurrence/conditional logic). 
+
